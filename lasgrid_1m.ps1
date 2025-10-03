@@ -10,8 +10,19 @@
 # Class 17: Bridge Deck
 # Class 18: High Noise
 
-# Output in laz
-lasgrid -i C:/DATA/000_Sophie_Rothman/Downloads/*.laz -step 1 -keep_class 3 4 5 -verbose -olaz -cores 5
+$rootDir = "C:/DATA/000_Sophie_Rothman"
+$inputDir = "C:/DATA/000_Sophie_Rothman/Downloads"
+$outputDir = "C:/DATA/000_Sophie_Rothman/Downloads/out"
 
-# Output in tif
-lasgrid -i C:/DATA/000_Sophie_Rothman/Downloads/*.laz -step 1 -keep_class 3 4 5 -verbose -otif -cores 5
+# Output in laz / 29 seconds for 100 laz
+Measure-Command {
+    lasgrid -i $inputDir/*.laz `
+    -odir $outputDir `
+    -olaz `
+    -step 1 `
+    -keep_class 4 5 `
+    -cores 10
+}
+
+# Merge all laz
+lasmerge -i $outputDir/*.laz -o $rootDir/merged.laz

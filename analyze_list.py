@@ -4,6 +4,8 @@ import pandas as pd
 
 from lidar_platform import misc
 
+import time
+
 
 def download(path, odir, verbose=False, debug=False):
     cmd = [
@@ -38,5 +40,8 @@ total_GB = total / 1e9
 #%%
 download(data['path'][0], odir, verbose=True)
 
-#%%
-Parallel(n_jobs=5)(delayed(download)(path, odir, verbose=True) for path in data['path'][0:20])
+#%% 336 seconds for 200 (100 laz + 100 lax)
+start = time.time()
+Parallel(n_jobs=10)(delayed(download)(path, odir, verbose=True) for path in data['path'][0:200])
+end = time.time()
+print(f"Execution time: {end - start:.6f} seconds")
