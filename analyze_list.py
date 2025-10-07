@@ -1,3 +1,5 @@
+import os
+
 from joblib import Parallel, delayed
 
 import pandas as pd
@@ -7,8 +9,22 @@ from lidar_platform import misc
 import time
 
 
+# This one will only work if you installed AWS tools and if they are available from a terminal
 def download(path, odir, verbose=False, debug=False):
-    cmd = [
+    """ Download one file from OpenTopography
+
+    :param path: OpenTopography path
+    :param odir: The directory where the fil will be stored
+    :param verbose:
+    :param debug:
+    :return:
+    """
+    
+    if not os.path.exists(odir):  # Create odir if needed
+        print(f"Create odir as it does not exist {odir}")
+        os.makedirs(odir, exist_ok=True)
+
+    cmd = [  # Build the command for later execution
         "aws",
         "s3",
         "cp",
