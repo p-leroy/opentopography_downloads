@@ -16,7 +16,7 @@ $outputDir = "C:/DATA/000_Sophie_Rothman/Downloads/out"
 
 # Output in laz / 29 seconds for 100 laz
 Measure-Command {
-    lasgrid -i $inputDir/*.laz `
+    lasgrid64 -i $inputDir/*.laz `
     -odir $outputDir `
     -olaz `
     -step 1 `
@@ -25,4 +25,4 @@ Measure-Command {
 }
 
 # Merge all laz
-lasmerge -i $outputDir/*.laz -o $rootDir/merged.laz
+lasmerge64 -i $outputDir/*.laz -o $rootDir/merged.laz
