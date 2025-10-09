@@ -37,8 +37,9 @@ def download(path, odir, verbose=False, debug=False):
 
     misc.run(cmd, advanced=True, verbose=verbose)
 
-
-list_of_all_files = r".\downloads.txt"
+# it is possible to download the list of available files following bulk download CLI samples provided by OpenTopography
+# aws s3 ls s3://pc-bulk/NZ20_Hawkes/ --recursive --endpoint-url https://opentopography.s3.sdsc.edu --no-sign-request  | Out-File NZ20_Hawkes.txt
+list_of_all_files = r".\NZ24_Whanganui.txt"
 odir = r"C:\DATA\000_Sophie_Rothman\Downloads"
 
 
